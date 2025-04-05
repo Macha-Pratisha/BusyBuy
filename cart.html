@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart - My Online Store</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .cart-container {
+            width: 30%;
+            margin: 20px auto;
+            background-color: white;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+        }
+
+        .cart-item img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .cart-total {
+            text-align: right;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        .checkout-button{
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            float: right;
+        }
+        .checkout-button:hover{
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Your Shopping Cart</h1>
+    </header>
+
+    <main>
+        <div class="cart-container">
+            <div class="cart-item">
+                <img src="Mens/964a73fb5fc5ec7b5adb3f3f0010bf50.jpg" alt="Product 1">
+                <div>
+                    <h3>Product 1</h3>
+                    <p>Price: $60</p>
+                    <p>Quantity: 1</p>
+                </div>
+                <button onclick="removeItem(1)">Remove</button>
+            </div>
+            <div class="cart-item">
+                <img src="6a333f3d-eaf1-463c-ae5d-1c4f74f0a213.jpeg" alt="Product 2">
+                <div>
+                    <h3>Product 2</h3>
+                    <p>Price: $60</p>
+                    <p>Quantity: 1</p>
+                </div>
+                <button onclick="removeItem(2)">Remove</button>
+            </div>
+            <div class="cart-total">
+                Total: $120
+            </div>
+            <button onclick="window.location.href='order.html'" class="checkout-button">Place order</button>
+        </div>
+    </main>
+
+    <script>
+        function removeItem(itemId) {
+            alert('Remove item ' + itemId);
+            // Implement actual removal logic here
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,413 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Online Store - Home</title>
+    <style>
+        /* ... (Your existing styles) ... */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            transition: background-color 0.3s ease;
+        }
+        header:hover{
+            background-color:#0056b3;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+
+        .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+        .logo:hover{
+            transform: scale(1.05);
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .search-bar input {
+            padding: 8px;
+            border: none;
+            border-radius: 5px;
+            transition: border-color 0.3s ease;
+        }
+        .search-bar input:focus{
+            border: 2px solid #007bff;
+        }
+
+        .search-bar button {
+            padding: 8px 15px;
+            background-color: white;
+            color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .search-bar button:hover{
+            background-color:#007bff;
+            color:white;
+        }
+
+        .user-actions a {
+            color: white;
+            text-decoration: none;
+            margin-left: 15px;
+            transition: color 0.3s ease;
+        }
+        .user-actions a:hover{
+            color:#ddd;
+        }
+
+        .hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('hero-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .hero h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background-color: #ffc107;
+            color: #333;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        .btn:hover{
+            background-color:#ffdb4d;
+        }
+
+        .categories, .deals, .carousel {
+            padding: 20px;
+            background-color: white;
+            margin: 20px;
+            border-radius: 8px;
+            animation: slideIn 0.5s ease-in-out;
+        }
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .category-list, .deal-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .category-item, .deal-item {
+            border: 1px solid #ddd;
+            padding: 15px;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .category-item:hover, .deal-item:hover{
+            transform: scale(1.03);
+        }
+
+        .category-item img, .deal-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+        
+        
+        .categories,.deals {
+            background-color: #f9f9f9;
+        }
+        .category-item,.deal-item button{
+            background-color:#007bff;
+            color:white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top:10px;
+            transition: background-color 0.3s ease;
+        }
+        .category-item,.deal-item button:hover{
+            background-color:#0056b3;
+        }
+        .footer {
+            background-color: black;
+            background-size: cover;
+            background-repeat: no-repeat;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <!-- header -->
+        <nav>
+            <div class="logo">
+                <img src="busy.png" alt="Store Logo">
+                BusyBuy
+            </div>
+            <div class="search-bar">
+                <form onsubmit="return searchRedirect()">
+                    <input type="text" placeholder="Search products..." id="searchInput">
+                    <button id="searchButton">Search</button>
+                </form>
+            </div>
+            <div class="user-actions">
+                <a href="/loginmy.html">Login</a>
+                <a href="/cart.html">Cart</a>
+            </div>
+        </nav>
+
+        <div class="hero">
+            <h1>Welcome to Our Online Store!</h1>
+            <p>Discover amazing deals on a wide range of products.</p>
+            <a href="#categories" class="btn">Shop Now</a>
+        </div>
+    </header>
+
+    <main>
+         <section class="deals">
+            <h1>Today's Deals</h1>
+            <div class="deal-list">
+                <div class="deal-item" onclick="navigateToCategory('/Discount/Discount.html')">
+                    <img src=" s1.jpg"  alt="Discount Deal">
+                    <button>Save 20%</button>
+                </div>
+                <div class="deal-item" onclick="navigateToCategory('buy.html')">
+                    <img src="s2.jpg"  alt="Buy One Get One Deal">
+                    <button>Buy One Get One Free</button>
+                </div>
+            </div>
+        </section>
+      
+        <section id="categories" class="categories">
+            <h2>Shop By Category</h2>
+            <div class="category-list">
+                <div class="category-item" onclick="navigateToCategory('Mens/Male.html')">
+                    <img src="Mens/IMG-20250404-WA0489.jpg" alt="Men's Clothing">
+                    <button> Men</button>
+                </div>
+                <div class="category-item" onclick="navigateToCategory('mees.html')">
+                    <img src="WhatsApp Image 2025-04-04 at 1.38.36 PM(1).jpeg" alt="Women's Clothing">
+                    <button> Women</button>
+                </div>
+                <div class="category-item" onclick="navigateToCategory('Home Appliances/HomeAppliances.html')">
+                    <img src="home.jpg" alt="Home & Kitchen Appliances">
+                    <button> Home & Kitchen</button>
+                </div>
+                <div class="category-item" onclick="navigateToCategory('acc.html')">
+                    <img src="WhatsApp Image 2025-04-04 at 2.54.25 PM.jpeg" alt="Accessories">
+                    <button> Accessories</button>
+                </div>
+                <div class="category-item" onclick="navigateToCategory('Mens/Footwear.html')">
+                    <img src="Mens/IMG-20250404-WA0499.jpg" alt="Men Footwear">
+                    <button> Men Footwear</button>
+                </div>
+                <div class="category-item" onclick="navigateToCategory('foot.html')">
+                    <img src="WhatsApp Image 2025-04-04 at 2.23.32 PM.jpeg" alt="Women Footwear">
+                    <button> Women Footwear</button>
+                </div>
+                <div class="category-item" onclick="navigateToCategory('kids.html')">
+                    <img src="WhatsApp Image 2025-04-04 at 2.14.24 PM.jpeg" alt="Baby Girls">
+                    <button> Baby Girls</button>
+                </div>
+                <div class="category-item" onclick="navigateToCategory('Mens/Kids.html')">
+                    <img src="Mens/WhatsApp Image 2025-04-04 at 2.55.22 PM.jpeg" alt="Baby Boys">
+                    <button>Baby Boys</button>
+                </div>
+            </div>
+        </section>
+
+       
+    </main>
+
+    <footer class="footer">
+        <center>
+            <table width="80%" height="300px">
+                <tr align="left">
+                    <td>
+                        <br>
+                        <h2>Follow Us</h2><br>
+                        <img src="fb1.jpeg" alt="Facebook" width="46px" height="46px">
+                        <img src="wt.jpeg" alt="WhatsApp" width="50px" height="50px">
+                        <img src="yt.jpeg" alt="Youtube" width="50px" height="50px">
+                        <img src="insta.jpeg" alt="Youtube" width="50px" height="50px">
+                    </td>
+                    
+                    <td align="center">
+                        <h3>Scan to Chat</h3>
+                        <img src="qr.jpeg" width="100" height="100" alt="QR Code">
+                    </td>
+                </tr>
+            </table>
+        </center>
+        <hr>
+        &copy; 2025 Busy Buy | <a href="#">Contact Us</a> | <a href="#">Privacy Policy</a>
+        <br>
+        <br>
+        <center>SHOPPING IS AN ART</center>
+    </footer>
+
+    <script>
+        document.getElementById('searchButton').addEventListener('click', function() {
+            const searchTerm = document.getElementById('searchInput').value;
+            alert('Searching for: ' + searchTerm);
+        });
+        function searchRedirect(){
+            let query= document.getElementById("searchInput").value.toLowerCase();
+
+            if(query.includes("saree")){
+                window.location.href="sarees.html";
+                return false;
+            }
+            if(query.includes("kurthis")){
+                window.location.href="kurthis.html";
+                return false;
+            }
+            if(query.includes("girls")){
+                window.location.href="kids.html";
+                return false;
+            }
+            if(query.includes("girls footwear")){
+                window.location.href="foot.html";
+                return false;
+            }
+            if(query.includes("shirts")){
+                window.location.href="Mens/Shirts.html";
+                return false;
+            }
+            if(query.includes("pants")){
+                window.location.href="Mens/Jeans.html";
+                return false;
+            }
+            if(query.includes("boys")){
+                window.location.href="Mens/Kids.html";
+                return false;
+            }
+            if(query.includes("boys footwear")){
+                window.location.href="Mens/Footwear.html";
+                return false;
+            }
+            if(query.includes("women accessories")){
+                window.location.href="womenacc.html";
+                return false;
+            }
+            if(query.includes("men accessories")){
+                window.location.href="menacc.html";
+                return false;
+            }
+            if(query.includes("womens")){
+                window.location.href="mees.html";
+                return false;
+            }
+            if(query.includes("mens")){
+                window.location.href="Mens/Male.html";
+                return false;
+            }
+            if(query.includes("home appliances")){
+                window.location.href="Home Appliances/HomeAppliances.html";
+                return false;
+            }
+            if(query.includes("accessories")){
+                window.location.href="acc.html";
+                return false;
+            }
+            return true;
+        }
+
+    const slides = document.querySelectorAll('.carousel-slide');
+        const dotsContainer = document.getElementById('carouselDots');
+        let slideIndex = 0;
+
+        function updateDots(index) {
+            dotsContainer.innerHTML = '';
+            slides.forEach((_, i) => {
+                const dot = document.createElement('span');
+                dot.classList.add('carousel-dot');
+                if (i === index) {
+                    dot.classList.add('active');
+                }
+                dot.onclick = () => {
+                    slideIndex = i;
+                    showSlide(slideIndex);
+                };
+                dotsContainer.appendChild(dot);
+            });
+        }
+
+        updateDots(slideIndex);
+
+        function autoSlide() {
+            slideIndex = (slideIndex + 1) % slides.length;
+            showSlide(slideIndex);
+        }
+
+        setInterval(autoSlide, 5000);
+
+        function navigateToCategory(categoryUrl) {
+            window.location.href = categoryUrl;
+        }
+        function showSlide(index) {
+            document.getElementById('carouselSlides').style.transform = `translate3d(-${index * 100}%, 0, 0)`;
+            updateDots(index);
+        }
+    </script>
+</body>
+</html>
+

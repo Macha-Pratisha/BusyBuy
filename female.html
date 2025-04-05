@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Women's Shopping</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2d2d2;
+            transition: margin-left 0.3s ease;
+        }
+
+        header {
+            background-color: rgba(159, 121, 180, 0.815);
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+
+        /* Featured Products Section */
+        .products {
+            text-align: center;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            /* 5 products per row */
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .product {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            /* Transition for transform and box-shadow */
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            animation: fadeIn 0.5s ease-in-out;
+            cursor: pointer;
+
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+                /* Initial position: slightly down */
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+                /* End position: normal */
+            }
+        }
+
+        .product:hover {
+            transform: scale(1.05);
+            box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .product img {
+            max-width: 100%;
+            border-radius: 8px;
+        }
+
+        .add-to-cart {
+            margin-top: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-sizing: border-box;
+        }
+        .add-to-cart:hover {
+            transform: scale(1.05);
+            box-shadow: 2px 2px 20px rgba(221, 77, 77, 0.2);
+        }
+
+
+        /* Sidebar Style */
+        #sidebar {
+            height: 100%;
+            width: 200px;
+            position: absolute;
+            left: -250px;
+            /* Initially hidden */
+            top: 0;
+            background-color: #53006d;
+
+            color: white;
+            transition: 0.3s;
+            z-index: 1000;
+            /* Ensure sidebar is above content */
+            overflow-y: auto;
+            /* Enable vertical scrolling */
+            padding-bottom: 20px;
+            /* Add space at the bottom for scroll */
+        }
+
+        #sidebar a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+            transition: 0.3s;
+        }
+
+        #sidebar a:hover {
+            background-color: #575757;
+        }
+
+        #sidebar .close-btn {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 30px;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* Sidebar Picture */
+        #sidebar-picture {
+            width: 100%;
+            height: 150px;
+            
+            /* Replace with actual image URL */
+            background-size: cover;
+            background-position: center;
+            border-bottom: 2px solid #fff;
+        }
+
+        /* Category Filters */
+        .category-filters {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .category-filters img {
+            width: 80%;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        .category-filters h4 {
+            color: white;
+            margin-top: 5px;
+        }
+
+        /* Sort By */
+        .sort-by {
+            margin-bottom: 20px;
+        }
+
+        .sort-by label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* Centering the Hero Text */
+        .hero {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        /* Featured Products Title */
+        .featured-title {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #d86ea8;
+        }
+
+        /* Responsive Styling */
+        @media (max-width: 1024px) {
+            .products {
+                grid-template-columns: repeat(3, 1fr);
+                /* 3 products per row */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .products {
+                grid-template-columns: repeat(2, 1fr);
+                /* 2 products per row */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .products {
+                grid-template-columns: 1fr;
+                /* 1 product per row */
+            }
+        }
+
+        /* When sidebar is open, shift content */
+        body.sidebar-open .products {
+            margin-left: 250px;
+            /* Shift content to the right */
+        }
+
+        /* Styling the scrollbar */
+        #sidebar::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        #sidebar::-webkit-scrollbar-thumb {
+            background: #575757;
+            border-radius: 10px;
+        }
+
+        #sidebar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        /* Sticky Sidebar Mark */
+        #sidebar-mark {
+            position: sticky;
+            top: 20px;
+            /* Keeps the mark visible even when scrolling */
+            z-index: 9999;
+            top: 0;
+            background-color: #ae4bd4;
+            color: white;
+            padding: 10px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Hide sidebar mark when sidebar is open */
+        body.sidebar-open #sidebar-mark {
+            visibility: hidden;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Women's Fashion Store</h1>
+        <nav>
+            <ul>
+                <li><a href="/home/apiiit123/Downloads/Busy Buy/busyBuy/index.html">Home</a></li>
+                
+                <li><a href="/home/apiiit123/Downloads/Busy Buy/busyBuy/cart.html">Cart (<span id="cart-count">0</span>)</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Sidebar -->
+    <div id="sidebar">
+        <span class="close-btn" id="close-sidebar">&times;</span>
+
+        <!-- Sidebar Picture -->
+        <div id="sidebar-picture"></div>
+
+        <h2>Filter & Sort</h2>
+
+        <!-- Categories Filters (Images with Links) -->
+        <div class="category-filters">
+            <h3>Categories</h3>
+            <a href="sarees.html">
+                <img src="sarees2.jpeg" alt="Sarees">
+                <h4>Sarees</h4>
+            </a>
+            <a href="kurti.html">
+                <img src="kurti2.jpeg" alt="Kurtis">
+                <h4>Kurtis</h4>
+            </a>
+            <a href="kids.html">
+                <img src="kid1.jpeg" alt="Kids Collection">
+                <h4>Kids Collection</h4>
+            </a>
+
+            <a href="footwear.html">
+                <img src="shoes2.jpeg" alt="Footwear">
+                <h4>Footwear</h4>
+            </a>
+        </div>
+
+        <!-- Sort By Filters -->
+        <div class="sort-by">
+            <h3>Sort By</h3>
+            <label><input type="radio" name="sort" value="Low to High"> Price - Low to High</label>
+            <label><input type="radio" name="sort" value="High to Low"> Price - High to Low</label>
+            <label><input type="radio" name="sort" value="Newest First"> Newest First</label>
+        </div>
+
+        <h3>Price Range</h3>
+        <div class="price-range">
+            <input type="range" min="0" max="200" value="100" id="priceRange">
+            <p>Price: $<span id="priceValue">100</span></p>
+        </div>
+    </div>
+
+    <!-- Visible Sidebar Mark -->
+    <div id="sidebar-mark">☰</div>
+
+    <!-- Hero Text -->
+    <div class="hero">
+        <h2>Shop the latest trends for women!</h2>
+    </div>
+
+    <!-- Featured Products Title -->
+    <div class="featured-title">
+        <h2>Featured Products</h2>
+    </div>
+
+    <section class="products">
+        <!-- Featured Product Examples (Add more products as needed) -->
+        <div class="product">
+            <img src="6a333f3d-eaf1-463c-ae5d-1c4f74f0a213.jpeg" alt="Dress" width="250" height="250">
+            <h3>Elevant Jacket</h3>
+            <p>$60</p>
+            <button class="add-to-cart" data-price="60">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="652f36d6-6717-47af-a125-c10f91fe2c37.jpeg" alt="Tops" width="250" height="250">
+            <h3>Casual Coat</h3>
+            <p>$35</p>
+            <button class="add-to-cart" data-price="35">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="87629a6a-70b3-4104-8ca5-82258b47c597.jpeg" alt="Skirt" width="250" height="250">
+            <h3>Flared frock</h3>
+            <p>$45</p>
+            <button class="add-to-cart" data-price="45">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="2112380c-9aeb-424c-89fa-88cde62d762d.jpeg" alt="Kurti" width="250" height="250">
+            <h3>Traditional frock</h3>
+            <p>$30</p>
+            <button class="add-to-cart" data-price="30">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="46560049-db48-4890-b0d7-110f64beaf5a.jpeg" alt="Footwear" width="250" height="250">
+            <h3>Stylish top</h3>
+            <p>$50</p>
+            <button class="add-to-cart" data-price="50">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="75426279-3852-41f5-b596-9aeada5db840.jpeg" alt="Skirt" width="250" height="250">
+            <h3>Denim jacket</h3>
+            <p>$45</p>
+            <button class="add-to-cart" data-price="45">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="a1d21ed9-7cd9-4817-aff1-96923ff7752b.jpeg" alt="Kurti" width="250" height="250">
+            <h3>Denim Coat Stylish</h3>
+            <p>$30</p>
+            <button class="add-to-cart" data-price="30">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="b45325e1-6476-406a-832f-5dd458e30a3a.jpeg" alt="Footwear" width="250" height="250">
+            <h3>Round Frock</h3>
+            <p>$50</p>
+            <button class="add-to-cart" data-price="50">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="eee7f24f-4b61-49cb-8f87-83f57053e635.jpeg" alt="Skirt" width="250" height="250">
+            <h3>Flared Skirt</h3>
+            <p>$45</p>
+            <button class="add-to-cart" data-price="45">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="ef64db01-c464-4a24-b68d-b55ea4461348.jpeg" alt="Kurti" width="250" height="250">
+            <h3>Japanese frock</h3>
+            <p>$30</p>
+            <button class="add-to-cart" data-price="30">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="jeans1.jpeg" alt="Footwear" width="250" height="250">
+            <h3>Stylish jeans</h3>
+            <p>$50</p>
+            <button class="add-to-cart" data-price="50">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="sandles3.jpeg" alt="Footwear" width="250" height="250">
+            <h3>Stylish sandles</h3>
+            <p>$50</p>
+            <button class="add-to-cart" data-price="50">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="shoes3.jpeg" alt="Skirt" width="250" height="250">
+            <h3>Shoes</h3>
+            <p>$45</p>
+            <button class="add-to-cart" data-price="45">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="kurti1.jpeg" alt="Kurti" width="250" height="250">
+            <h3>Traditional Kurti</h3>
+            <p>$30</p>
+            <button class="add-to-cart" data-price="30">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="salwar1.jpeg" alt="Footwear" width="250" height="250">
+            <h3>Stylish Salwar</h3>
+            <p>$50</p>
+            <button class="add-to-cart" data-price="50">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="jeans2.jpeg" alt="Footwear" width="250" height="250">
+            <h3>Stylish jeans</h3>
+            <p>$50</p>
+            <button class="add-to-cart" data-price="50">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="jeans3.jpeg" alt="Skirt" width="250" height="250">
+            <h3>Flared jeans</h3>
+            <p>$45</p>
+            <button class="add-to-cart" data-price="45">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="shoes1.jpeg" alt="Kurti" width="250" height="250">
+            <h3>Stylish Shoes</h3>
+            <p>$30</p>
+            <button class="add-to-cart" data-price="30">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="kurti2.jpeg" alt="Footwear" width="250" height="250">
+            <h3>Stylish Kurti</h3>
+            <p>$50</p>
+            <button class="add-to-cart" data-price="50">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="salwar1.jpeg" alt="Footwear" width="250" height="250">
+            <h3>Stylish Salwar</h3>
+            <p>$50</p>
+            <button class="add-to-cart" data-price="50">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="sandles1.jpeg" alt="Skirt" width="250" height="250">
+            <h3>Flared Sandles</h3>
+            <p>$45</p>
+            <button class="add-to-cart" data-price="45">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="sarees1.jpeg" alt="Kurti" width="250" height="250">
+            <h3>Traditional Saree</h3>
+            <p>$30</p>
+            <button class="add-to-cart" data-price="30">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="sandles2.jpeg" alt="Footwear" width="250" height="250">
+            <h3>Sandles</h3>
+            <p>$50</p>
+            <button class="add-to-cart" data-price="50">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="shoes3.jpeg" alt="Footwear" width="250" height="250">
+            <h3>Stylish Footwear</h3>
+            <p>$50</p>
+            <button class="add-to-cart" data-price="50">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="sarees4.jpeg" alt="Skirt" width="250" height="250">
+            <h3>Flared Saree</h3>
+            <p>$45</p>
+            <button class="add-to-cart" data-price="45">Add to Cart</button>
+        </div>
+
+
+    </section>
+
+    <script>
+        let cartCount = 0;
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function () {
+                cartCount++;
+                document.getElementById('cart-count').innerText = cartCount;
+                alert('Item added to cart!');
+            });
+        });
+
+        // Sidebar toggle functionality
+        document.getElementById('sidebar-mark').addEventListener('click', function () {
+            document.getElementById('sidebar').style.left = '0';  // Show the sidebar
+            document.body.classList.add('sidebar-open');  // Add class to shift content
+        });
+
+        document.getElementById('close-sidebar').addEventListener('click', function () {
+            document.getElementById('sidebar').style.left = '-250px';  // Hide the sidebar
+            document.body.classList.remove('sidebar-open');  // Remove class to reset content position
+        });
+
+        // Update the price range value dynamically
+        document.getElementById('priceRange').addEventListener('input', function () {
+            document.getElementById('priceValue').innerText = this.value;
+        });
+
+        // Hide sidebar on scroll
+        window.addEventListener('scroll', function () {
+            document.getElementById('sidebar').style.left = '-250px';  // Hide the sidebar when scrolling
+            document.body.classList.remove('sidebar-open');  // Remove class to reset content position
+        });
+
+    </script>
+</body>
+
+</html>
