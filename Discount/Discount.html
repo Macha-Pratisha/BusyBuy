@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discount</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Assuming styles.css contains your main styles -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2d2d2;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: darkgoldenrod;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+
+        /* Products Grid */
+        .products {
+            text-align: center;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr); /* 5 products per row */
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .product {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            transition: width 0.3s ease;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+        .product img {
+            max-width: 100%;
+            border-radius: 8px;
+        }
+
+        .add-to-cart {
+            margin-top: 10px;
+        }
+        .style{
+            text-decoration: none;
+            color:white;
+            font-size: 30px;
+        }
+
+        /* Responsive Styling */
+        @media (max-width: 1024px) {
+            .products {
+                grid-template-columns: repeat(3, 1fr); /* 3 products per row */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .products {
+                grid-template-columns: repeat(2, 1fr); /* 2 products per row */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .products {
+                grid-template-columns: 1fr; /* 1 product per row */
+            }
+        }
+        .style{
+            text-decoration: none;
+            text-decoration-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Welcome To Discounts Store</h1>
+        <nav>
+            <ul>
+                <li><a href="/index.html">Home</a></li>
+                
+                <li><a href="/cart.html">Cart (<span id="cart-count">0</span>)</a></li>
+            </ul>
+        </nav>
+    </header>
+
+   
+
+    <!-- Featured Sarees Section -->
+    <div class="featured-title">
+        <h2><marquee  direction="right">Flat 20% Discount. Grab the items! Hurry up!!</marquee></h2>
+    </div>
+
+    <section class="products">
+        <!-- Featured Saree Examples (Add more sarees as needed) -->
+        <div class="product">
+            <img src="1a91cf68b92763591806af9dffcdf2df.jpg" alt="Shirt1" width="300" height="300">
+            <p>$60</p>
+            <button class="add-to-cart" data-price="60">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="5c6714b3530eceb82e05f0ce697a32e9.jpg" alt="Shirt2" width="300" height="300">
+            <p>$75</p>
+            <button class="add-to-cart" data-price="75">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="8e062b239765b3cc9a00315100aa6694.jpg" alt="Shirt3" width="300" height="300">
+            <p>$100</p>
+            <button class="add-to-cart" data-price="100">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="62c882554b657d1b60c1f6d07ef2df66.jpg" alt="Shirt4" width="300" height="300">
+            
+            <p>$60</p>
+            <button class="add-to-cart" data-price="60">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="472ca4b247019fa8dddbe7c7bc41e116.jpg" alt="Shirt5" width="300" height="300">
+        
+            <p>$75</p>
+            <button class="add-to-cart" data-price="75">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="904e498207bcda1a37a8251574f0815d.jpg" alt="Shirt6" width="300" height="300">
+            
+            <p>$100</p>
+            <button class="add-to-cart" data-price="100">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="42637601374afe6328b62a53162e9834.jpg" alt="Shirt7" width="300" height="300">
+            
+            <p>$60</p>
+            <button class="add-to-cart" data-price="60">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="c915557acb79ec2b8bc42eebb9944f4b.jpg" alt="Shirt8" width="300" height="300">
+            
+            <p>$75</p>
+            <button class="add-to-cart" data-price="75">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="WhatsApp Image 2025-04-04 at 1.46.21 PM(1).jpeg" alt="Shirt9" width="300" height="300">
+            
+            <p>$100</p>
+            <button class="add-to-cart" data-price="100">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="WhatsApp Image 2025-04-04 at 2.39.15 PM.jpeg" alt="Shirt10" width="300" height="300">
+        
+            <p>$60</p>
+            <button class="add-to-cart" data-price="60">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="WhatsApp Image 2025-04-04 at 3.08.26 PM(1).jpeg" alt="Shirt11" width="300" height="300">
+        
+            <p>$75</p>
+            <button class="add-to-cart" data-price="75">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="WhatsApp Image 2025-04-04 at 3.08.26 PM(2).jpeg" alt="Shirt12" width="300" height="300">
+        
+            <p>$100</p>
+            <button class="add-to-cart" data-price="100">Add to Cart</button>
+        </div>
+
+
+        <div class="product">
+            <img src="WhatsApp Image 2025-04-04 at 3.08.27 PM.jpeg" alt="Shirt1" width="300" height="300">
+            <p>$60</p>
+            <button class="add-to-cart" data-price="60">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="WhatsApp Image 2025-04-04 at 3.08.27 PM(1).jpeg" alt="Shirt2" width="300" height="300">
+            <p>$75</p>
+            <button class="add-to-cart" data-price="75">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="WhatsApp Image 2025-04-04 at 3.08.28 PM.jpeg" alt="Shirt3" width="300" height="300">
+            <p>$100</p>
+            <button class="add-to-cart" data-price="100">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="WhatsApp Image 2025-04-04 at 3.08.26 PM(1).jpeg" alt="Shirt4" width="300" height="300">
+            
+            <p>$60</p>
+            <button class="add-to-cart" data-price="60">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="WhatsApp Image 2025-04-04 at 3.08.26 PM(2).jpeg" alt="Shirt5" width="300" height="300">
+        
+            <p>$75</p>
+            <button class="add-to-cart" data-price="75">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="WhatsApp Image 2025-04-04 at 3.08.27 PM.jpeg" alt="Shirt6" width="300" height="300">
+            
+            <p>$100</p>
+            <button class="add-to-cart" data-price="100">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="WhatsApp Image 2025-04-04 at 3.08.27 PM(1).jpeg" alt="Shirt7" width="300" height="300">
+            
+            <p>$60</p>
+            <button class="add-to-cart" data-price="60">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="WhatsApp Image 2025-04-04 at 3.08.28 PM.jpeg" alt="Shirt7" width="300" height="300">
+            
+            <p>$60</p>
+            <button class="add-to-cart" data-price="60">Add to Cart</button>
+        </div>
+        <!-- Add more saree products as needed -->
+    </section>
+    <center><button ><a href="https://www.meesho.com/search?q=discounts&searchType=manual&searchIdentifier=text_search" class="style">SEE MORE</a></button></center>
+
+    <br><br>
+    <script>
+        let cartCount = 0;
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                cartCount++;
+                document.getElementById('cart-count').innerText = cartCount;
+                alert('Item added to cart!');
+            });
+        });
+    </script>
+</body>
+</html>
